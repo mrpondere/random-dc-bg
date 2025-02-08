@@ -1,9 +1,6 @@
 name: Run and Push Python Script Hourly
 
 on:
-  push:
-    branches:
-      - main
   schedule:
     - cron: '0 * * * *'
 
