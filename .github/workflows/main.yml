@@ -2,7 +2,7 @@ name: Run and Push Python Script Hourly
 
 on:
   schedule:
-    - cron: '0 * * * *'  # Runs every hour
+    - cron: '*/5 * * * *'  # Runs every hour
 
 jobs:
   run_python_script:
