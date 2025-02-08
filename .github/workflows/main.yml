@@ -1,4 +1,4 @@
-name: Run and Push Python Script Hourly
+name: Set random bg
 
 on: workflow_dispatch
 
@@ -14,6 +14,10 @@ jobs:
         with:
           python-version: 3.x
           repo-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Pull changes
+        run: |
+          git pull
       
       - name: Run Python script
         run: |
