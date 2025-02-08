@@ -1,0 +1,31 @@
+name: Run and Push Python Script Hourly
+
+on:
+  schedule:
+    - cron: '0 * * * *'  # Runs every hour
+
+jobs:
+  run_python_script:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.x
+      
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+      
+      - name: Run Python script
+        run: |
+          python script.py
+      
+      - name: Commit and push changes
+        run: |
+          git add .
+          git commit -m "Automated update"
+          git push origin main
