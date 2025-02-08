@@ -22,5 +22,7 @@ jobs:
       - name: Commit and push changes
         run: |
           git add .
+          git config --global user.email "contacto@pondere.es"
+          git config --global user.name "Pondere"
           git commit -m "Automated update"
           git push origin main
