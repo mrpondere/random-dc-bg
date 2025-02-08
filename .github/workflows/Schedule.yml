@@ -1,4 +1,4 @@
-name: 📅 Schedule Workflow Dispatch
+name: 📅 Schedule Background change dispatch
 on:
   schedule:
     - cron: '0 */1 * * *' # every hour
