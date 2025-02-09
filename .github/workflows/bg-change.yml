@@ -1,6 +1,8 @@
 name: Set random bg
 
-on: workflow_dispatch
+on: 
+  schedule:
+    - cron: '0 */1 * * *' # every hour
 
 jobs:
   run_python_script:
