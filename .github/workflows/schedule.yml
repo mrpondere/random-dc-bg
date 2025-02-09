@@ -23,5 +23,5 @@ jobs:
           github-token: ${{ secrets.TOKEN }}
           date: ${{ github.event.inputs.date }}
           workflow: 'bg-change.yml'
-          timezone: 'Europe/Madrid' # US/Central, US/Pacific
+          timezone: 'US/Eastern' # US/Central, US/Pacific
           wait-ms: 45000
