@@ -1,7 +1,7 @@
 name: 📅 Schedule Workflow Dispatch
 on:
   schedule:
-    - cron: '0 */1 * * *' # every hour
+    - cron: '0 */8 * * *' # every hour
   workflow_dispatch:
     inputs:
       date:
