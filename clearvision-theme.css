@@ -1,548 +1,118 @@
 /**
- * @name ClearVision V7 for Vencord
+ * @name ClearVision V7 Ruby for Vencord
  * @author ClearVision Team
- * @version 7.0.0 pre
- * @description Highly customizable theme for BetterDiscord.
+ * @version 7.0.1
+ * @description Highly customizable theme for Vencord.
  * @source https://github.com/ClearVision/ClearVision-v7
  * @website https://clearvision.github.io
  * @invite dHaSxn3
  */
+
 /* IMPORT CSS */
 @import url("https://clearvision.github.io/ClearVision-v7/main.css");
 @import url("https://clearvision.github.io/ClearVision-v7/vencord.css");
+
 /* SETTINGS */
 :root {
   /* ACCENT COLORS */
-  --main-color: #2780e6;
-  --hover-color: #1e63b3;
-  --success-color: #43b581;
-  --danger-color: #982929;
+  --main-color: #e62727; /* main accent color (hex, rgb or hsl) [default: #e67a27] */
+  --hover-color: #b31e1e;  /* hover accent color (hex, rgb or hsl) [default: #b31e1e] */
+  --success-color: #43b581; /* positive accent color (hex, rgb or hsl) [default: #43b581] */
+  --danger-color: #982929; /* danger accent color (hex, rgb or hsl) [default: #982929] */
+  
   /* STATUS COLORS */
-  --online-color: #43b581;
-  --idle-color: #faa61a;
-  --dnd-color: #982929;
-  --streaming-color: #593695;
-  --offline-color: #808080;
-  /* BACKGROUND IMAGES */
-  --background-image: url(https://clearvision.github.io/images/sapphire.jpg);
-  --background-attachment: fixed;
-  --user-popout-image: var(--background-image);
-  --user-popout-attachment: var(--background-attachment);
-  --user-modal-image: var(--background-image);
-  --user-modal-attachment: var(--background-attachment);
+  --online-color: #43b581; /* online status color (hex, rgb or hsl) [default: #43b581] */
+  --idle-color: #faa61a; /* idle status color (hex, rgb or hsl) [default: #faa61a] */
+  --dnd-color: #982929; /* dnd status color (hex, rgb or hsl) [default: #982929] */
+  --streaming-color: #593695; /* streaming status color (hex, rgb or hsl) [default: #593695] */
+  --offline-color: #808080; /* offline/invisible status color (hex, rgb or hsl) [default: #808080] */
+
+  /* APP BACKGROUND */
+  --background-shading-percent: 100%; /* app background shading amount (0 for complete smoothness) [default: 100%] */
+  --background-image: url(https://clearvision.github.io/images/ruby.jpg); /* app background image (link must be HTTPS) [default: url(https://clearvision.github.io/images/ruby.jpg)]*/
+  --background-position: center; /* app background position [default: center] */
+  --background-size: cover; /* app background size (px) [default: cover] */
+  --background-attachment: fixed; /* app background attachment [default: fixed] */
+  --background-filter: saturate(calc(var(--saturation-factor, 1) * 1)); /* app background adjustments (ex: blur, saturation, brightness) (more info: https://developer.mozilla.org/en-US/docs/Web/CSS/filter) [default: saturate(calc(var(--saturation-factor, 1) * 1))] */
+  
+  /* USER POPOUT BACKGROUND */
+  --user-popout-image: var(--background-image); /* user popout background image (link must be HTTPS) (not applied to nitro users) [default: var(--background-image)] */
+  --user-popout-position: var(--background-position); /* user popout position [default: var(--background-position)] */
+  --user-popout-size: var(--background-size); /* user popout size (px) [default: var(--background-size)] */
+  --user-popout-attachment: var(--background-attachment); /* user popout background attachment [default: var(--background-attachment)] */
+  --user-popout-filter: var(--background-filter); /* user popout background adjustments (ex: blur, saturation, brightness) (more info: https://developer.mozilla.org/en-US/docs/Web/CSS/filter) [default: var(--background-filter);] */
+  
+  /* USER MODAL BACKGROUND */
+  --user-modal-image: var(--background-image); /* user modal background image (link must be HTTPS) (not applied to nitro users) [default: var(--background-image)] */
+  --user-modal-position: var(--background-position); /* user modal position [default: var(--background-position)] */
+  --user-modal-size: var(--background-size); /* user modal size (px) [default: var(--background-size)] */
+  --user-modal-attachment: var(--background-attachment); /* user modal background attachment [default: var(--background-attachment)] */
+  --user-modal-filter: var(--background-filter); /* user modal background adjustments (ex: blur, saturation, brightness) (more info: https://developer.mozilla.org/en-US/docs/Web/CSS/filter) [default: var(--background-filter);] */
+  
   /* HOME ICON */
-  --home-icon: url(https://clearvision.github.io/icons/discord.svg);
+  --home-icon: url(https://clearvision.github.io/icons/discord.svg); /* home button icon (link must be HTTPS) [default: url(https://clearvision.github.io/icons/discord.svg)]*/
+  --home-size: cover; /* home button icon size (px) [default:cover] */
+  
   /* FONTS */
-  --main-font: "gg sans", Whitney, "Helvetica Neue", Helvetica, Arial, sans-serif;
-  --code-font: Consolas, "gg mono", "Liberation Mono", Menlo, Courier, monospace;
-  /* BACKGROUND IMAGE FILTERS */
-  --background-filter: saturate(calc(var(--saturation-factor, 1) * 1));
-  --user-popout-filter: var(--background-filter);
-  --user-modal-filter: var(--background-filter);
+  --main-font: "gg sans", "Helvetica Neue", Helvetica, Arial, sans-serif; /* main font for app (font must be installed) [default: gg sans, Helvetica Neue, Helvetica, Arial, sans-serif] */
+  --code-font: Consolas, "gg mono", "Liberation Mono", Menlo, Courier, monospace; /* font for codeblocks (font must be installed) [default: Consolas, Liberation Mono, Menlo, Courier, monospace] */
+  
+  /* CHANNEL COLORS */
+  --channel-normal: var(--interactive-normal); /* channel text color [default: var(--interactive-normal)] */
+  --channel-muted: var(--interactive-muted); /* muted channel text color [default: var(--interactive-muted)] */
+  --channel-hover: var(--interactive-hover); /* hovered channel text color [default: var(--interactive-hover)] */
+  --channel-selected: var(--interactive-active); /* selected channel text color [default: var(--interactive-active)] */
+  --channel-selected-bg: var(--main-color); /* selected channel background [default: var(--main-color)] */
+  --channel-unread: var(--main-color); /* unread channel text color [default: var(--main-color)] */
+  --channel-unread-hover: var(--hover-color); /* unread channel hover color [default: var(--hover-color)] */
+  
+  /* ACCESSIBILITY */
+  --focus-color: var(--main-color); /* outline when pressing TAB key [default: var(--main-color)] */
 }
 
 /* THEME SPECIFIC SHADING */
 /* LIGHT THEME */
 :is(.theme-light, .theme-dark .theme-light) {
-  --background-shading: rgba(252, 252, 252, 0.3);
-  --background-shading-percent: 100%;
-  --card-shading: rgba(252, 252, 252, 0.3);
-  --popout-shading: rgba(252, 252, 252, 0.7);
-  --modal-shading: rgba(252, 252, 252, 0.5);
-  --input-shading: rgba(0, 0, 0, 0.3);
-  --normal-text: #36363c;
-  --muted-text: #75757e;
+  --background-shading: rgba(252, 252, 252, 0.3); /* app background shading color [default: rgba(252, 252, 252, 0.3)] */
+  --card-shading: rgba(252, 252, 252, 0.3); /* cards background shading color [default: rgba(252, 252, 252, 0.3)] */
+  --popout-shading: rgba(252, 252, 252, 0.7); /* popouts background shading color [default: rgba(252, 252, 252, 0.7)] */
+  --modal-shading: rgba(252, 252, 252, 0.5); /* modals background shading color [default: rgba(0, 0, 0, 0.6)] */
+  --input-shading: rgba(0, 0, 0, 0.3); /* inputs background shading color [default: rgba(0, 0, 0, 0.6)] */
+  --normal-text: #36363c; /* text color [default: #36363c] */
+  --muted-text: #75757e; /* muted text color [default: #75757e] */
 }
 
 /* ASH THEME */
 :is(.theme-dark, .theme-light .theme-dark) {
-  --background-shading: rgba(0, 0, 0, 0.4);
-  --background-shading-percent: 100%;
-  --card-shading: rgba(0, 0, 0, 0.2);
-  --popout-shading: rgba(0, 0, 0, 0.6);
-  --modal-shading: rgba(0, 0, 0, 0.4);
-  --input-shading: rgba(255, 255, 255, 0.05);
-  --normal-text: #d8d8db;
-  --muted-text: #aeaeb4;
+  --background-shading: rgba(0, 0, 0, 0.4); /* app background shading color [default: rgba(0, 0, 0, 0.4)] */
+  --card-shading: rgba(0, 0, 0, 0.2); /* cards background shading color [default: rgba(0, 0, 0, 0.2)] */
+  --popout-shading: rgba(0, 0, 0, 0.6); /* popouts background shading color [default: rgba(0, 0, 0, 0.6)] */
+  --modal-shading: rgba(0, 0, 0, 0.4); /* modals background shading color [default: rgba(0, 0, 0, 0.4)] */
+  --input-shading: rgba(255, 255, 255, 0.05); /* inputs background shading color [default: rgba(255, 255, 255, 0.05)] */
+  --normal-text: #d8d8db; /* text color [default: #d8d8db] */
+  --muted-text: #aeaeb4; /* muted text color [default: #aeaeb4] */
 }
 
 /* DARK THEME */
 :is(.theme-darker, .theme-light .theme-darker) {
-  --background-shading: rgba(0, 0, 0, 0.6);
-  --background-shading-percent: 100%;
-  --card-shading: rgba(0, 0, 0, 0.3);
-  --popout-shading: rgba(0, 0, 0, 0.7);
-  --modal-shading: rgba(0, 0, 0, 0.5);
-  --input-shading: rgba(255, 255, 255, 0.05);
-  --normal-text: #fbfbfb;
-  --muted-text: #94949c;
+  --background-shading: rgba(0, 0, 0, 0.6); /* app background shading color [default: rgba(0, 0, 0, 0.6)] */
+  --card-shading: rgba(0, 0, 0, 0.3); /* cards background shading color [default: rgba(0, 0, 0, 0.3)] */
+  --popout-shading: rgba(0, 0, 0, 0.7); /* popouts background shading color [default: rgba(0, 0, 0, 0.7)] */
+  --modal-shading: rgba(0, 0, 0, 0.5); /* modals background shading color [default: rgba(0, 0, 0, 0.6)] */
+  --input-shading: rgba(255, 255, 255, 0.05); /* inputs background shading color [default: rgba(255, 255, 255, 0.05)] */
+  --normal-text: #fbfbfb; /* text color [default: #fbfbfb] */
+  --muted-text: #94949c; /* muted text color [default: #94949c] */
 }
 
 /* ONYX THEME */
 :is(.theme-midnight, .theme-light .theme-midnight) {
-  --background-shading: rgba(0, 0, 0, 0.8);
-  --background-shading-percent: 100%;
-  --card-shading: rgba(0, 0, 0, 0.4);
-  --popout-shading: rgba(0, 0, 0, 0.8);
-  --modal-shading: rgba(0, 0, 0, 0.6);
-  --input-shading: rgba(255, 255, 255, 0.05);
-  --normal-text: #dcdcde;
-  --muted-text: #86868e;
+  --background-shading: rgba(0, 0, 0, 0.8); /* app background shading color [default: rgba(0, 0, 0, 0.8)] */
+  --card-shading: rgba(0, 0, 0, 0.4); /* cards background shading color [default: rgba(0, 0, 0, 0.4)] */
+  --popout-shading: rgba(0, 0, 0, 0.8); /* popouts background shading color [default: rgba(0, 0, 0, 0.8)] */
+  --modal-shading: rgba(0, 0, 0, 0.6); /* modals background shading color [default: rgba(0, 0, 0, 0.6)] */
+  --input-shading: rgba(255, 255, 255, 0.05); /* inputs background shading color [default: rgba(255, 255, 255, 0.05)] */
+  --normal-text: #dcdcde; /* text color [default: #dcdcde] */
+  --muted-text: #86868e; /* muted text color [default: #86868e] */
 }
 
 /* ADD ADDITIONAL CSS BELOW HERE */
-
-@import url("https://maendisease.github.io/BetterDiscordStuff/css/bearableInbox.css");
-
-/*i'm new here, say hi!*/
-[class*=newMemberBadge]:before {
-    content: url(https://cdn.discordapp.com/emojis/1024751291504791654.gif?size=64&quality=lossless);
-    transform: translate(-100%, -110%);
-    display: inline-block;
-    scale: 0.32;
-}
-
-/* Fix platform indicator size */
-.headerText-2z4IhQ>div>svg {
-    height: 16px;
-    width: 16px;
-    overflow-y: hidden;
-}
-
-/* Reduced enhanced markdown margins */
-[class^=message] [id^=message-content] :is(h1, h2, h3, li) {
-    margin: 0px;
-}
-
-[class^=message] [id^=message-content] :is(ol, ul) {
-    margin-top: 0px;
-}
-
-/* compact embeds */
-[id^=message-accessories] [class^=gridContainer]>[class^=grid] {
-    padding: 8px;
-}
-
-[id^=message-accessories] [class^=gridContainer]>[class^=grid]>* {
-    margin-top: 2px;
-}
-
-[id^=message-accessories] [class^=gridContainer]>[class^=grid] [class^=message] {
-    margin-bottom: 4px;
-}
-
-[id^=message-accessories] [class^=gridContainer]>[class^=grid] [class^=message] h3[class*=header] {
-    margin-top: 0px;
-}
-
-/* Hide the emoji links */
-a[href^="https://cdn.discordapp.com/emojis/"] {
-    display: none;
-}
-
-/* Hide GIFT button */
-.buttons-uaqb-5>.button-ejjZWC {
-    display: none
-}
-
-/* Hide GIF button */
-.buttonContainer-2lnNiN:not(.apateE2EButton):not(.send-button)> :not(.emojiButton-3FRTuj):not(.fm-button)> :not(.stickerButton-1-nFh2):not(.apateEncryptionKeyContainer):not(.translateButton-DhP9x8) {
-    display: none;
-}
-
-/* Hide Stickers button */
-.stickerButton-1-nFh2 {
-    display: none;
-}
-
-/* Colorize Icon */
-/* .emojiItemDisabled-3VVnwp {
-    filter: none;
-} */
-
-/* Emote Fix */
-img.emote {
-    text-indent: 0;
-    white-space: nowrap;
-    width: auto;
-    position: relative;
-    top: 0.25ex;
-}
-
-/* Fix Discord's Embeds for YouTube/Twitch VIdeos */
-.embedVideoImageComponent-3Clc3C {
-    justify-content: unset;
-    align-items: unset;
-}
-
-/* Username Background(Fixes New Badge Issue) */
-/* .headerText-2z4IhQ>[role*="button"]:not(.username-h_Y3Us)::before {
-    content: '';
-    width: calc(18px + 7px);
-    background-color: currentColor;
-    opacity: 0.3;
-    margin-left: 2px;
-} */
-
-/* Username Background */
-/* .headerText-2z4IhQ>span::before {
-    content: '';
-    width: calc(100% + 7px);
-    height: 100%;
-    border-radius: 5px;
-    background-color: currentColor;
-    opacity: 0.3;
-    position: absolute;
-    margin-top: 0px;
-    z-index: -1;
-    margin-left: -3px;
-}
-
-.headerText-2z4IhQ>span {
-    margin-left: 3px;
-} */
-
-/* repairs left shift */
-.cozy-3raOZG .headerText-3Uvj1Y>.username-1A8OIy {
-    margin-left: 3px;
-}
-
-/* fix the file icon shrinking with long file names */
-.audioMetadata-3zOuGv::before {
-    min-width: 24px;
-}
-
-/* Fix the channel icon being oversized in embeds and channel topics */
-.topic-TCb_qw>.wrapper-3WhCwL>.channelIcon-1MN1lz,
-.embedFooterText-28V_Wb>.wrapper-3WhCwL>.channelIcon-1MN1lz {
-    width: calc(1.05rem * 1.05 / 1.3);
-    height: 1.05rem;
-}
-
-/* Compact Blocked Messages */
-.scrollerInner-2PPAp2>.groupStart-3Mlgv1:not(.backgroundFlash-1X5jVs)>.wrapper-30-Nkg {
-    padding: 0 0 0 16px
-}
-
-.scrollerInner-2PPAp2>.groupStart-3Mlgv1:not(.backgroundFlash-1X5jVs)>.wrapper-30-Nkg.compact-2Nkcau {
-    padding: 0 0 0 108px
-}
-
-.scrollerInner-2PPAp2>.groupStart-3Mlgv1:not(.backgroundFlash-1X5jVs) {
-    margin: 0
-}
-
-.scrollerInner-2PPAp2>.groupStart-3Mlgv1.expanded-3lghlw:not(.backgroundFlash-1X5jVs) {
-    background-color: var(--info-danger-background)
-}
-
-.scrollerInner-2PPAp2>.groupStart-3Mlgv1:not(.backgroundFlash-1X5jVs) .messageListItem-ZZ7v6g .groupStart-3Mlgv1,
-.scrollerInner-2PPAp2>.groupStart-3Mlgv1:not(.backgroundFlash-1X5jVs, .expanded-3lghlw)+.messageListItem-ZZ7v6g .groupStart-3Mlgv1 {
-    margin-top: 0
-}
-
-.scrollerInner-2PPAp2>.groupStart-3Mlgv1:not(.backgroundFlash-1X5jVs) .messageListItem-ZZ7v6g {
-    opacity: .5
-}
-
-.blockedSystemMessage-3FmE9n .iconContainer-2rPbqG {
-    display: none
-}
-
-.blockedMessageText-3Zeg3y {
-    position: relative;
-    font-size: 12px;
-    line-height: 16px;
-    color: var(--interactive-muted)
-}
-
-.blockedMessageText-3Zeg3y:hover {
-    text-decoration: underline
-}
-
-.blockedMessageText-3Zeg3y:hover,
-.groupStart-3Mlgv1.expanded-3lghlw .blockedMessageText-3Zeg3y {
-    color: var(--info-danger-foreground)
-}
-
-.blockedAction-2cPk2G {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    opacity: 0
-}
-
-.blockedMessageText-3Zeg3y:after {
-    content: '';
-    position: absolute;
-    right: 0;
-    height: 100%;
-    width: 14px;
-    pointer-events: none;
-    background-color: currentColor;
-    -webkit-mask: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 18 24" fill="currentColor"><path fill-rule="evenodd" clip-rule="evenodd" d="M15 3.999V2H9V3.999H3V5.999H21V3.999H15Z M5 6.99902V18.999C5 20.101 5.897 20.999 7 20.999H17C18.103 20.999 19 20.101 19 18.999V6.99902H5ZM11 17H9V11H11V17ZM15 17H13V11H15V17Z" ></path></svg>') center/contain no-repeat
-}
-
-.container-1NXEtd .content-2a4AW9>div[style="height: 16px;"]:nth-child(2) {
-    display: none;
-}
-
-/* Compact channels catégories */
-
-:root {
-    --category-spacing: 2px;
-    --channel-spacing: 4px;
-}
-
-.containerDefault-3TQ5YN,
-.containerDragAfter-1J_-1V,
-.containerDragBefore-ei4h1m,
-.containerUserOver-3woq86 {
-    padding-top: var(--category-spacing);
-}
-
-.mainContent-20q_Hp {
-    padding: var(--channel-spacing);
-}
-
-/* Replace Tada Icon when the Server Has Unlocked All Boosting Perks with one from Twemoji. */
-.tadaIcon-313rPm {
-    color: transparent;
-    background-image: url("https://abs.twimg.com/emoji/v2/svg/1f389.svg");
-    height: 16px;
-    width: 16px;
-    position: relative;
-    bottom: 8px;
-    left: 200px;
-}
-
-/* simplify right click */
-#message-tts,
-#message-add-reaction-1,
-#message-mark-unread,
-.wrapper--nA0oy {
-    display: none;
-}
-
-/* Local Avatar */
-/* [src^="https://cdn.discordapp.com/avatars/738748102311280681/"] {
-  content: url(https://media.discordapp.net/attachments/953841823338618900/1087471163820740709/a_7f6e1adfd31bf02360c07181907f2ea2.gif);
-} */
-/* Local Avatar For Beast */
-/* [src^="https://cdn.discordapp.com/avatars/141555126337798144/"] {
-    content: url(https://avatars.githubusercontent.com/u/40509985);
-} */
-
-/* Change Clyde Avatar */
-[src*="/assets/cb1043c312ec65507573c06c37f6ee63.gif"],
-[src*="/assets/6024f311af925206143919b880e34a30.png"] {
-    content: url(https://cdn.discordapp.com/attachments/979430971659128932/1098500064621625425/avatar_discord.gif) !important;
-}
-
-[src^="/assets/3e30cd914362f27e07b3b4634c7600be.png"] {
-    content: url(https://cdn.discordapp.com/attachments/953841823338618900/1098517219014611005/banner_discord.gif);
-}
-
-[src*="/assets/3e30cd914362f27e07b3b4634c7600be.png"] {
-    content: url(https://cdn.discordapp.com/attachments/953841823338618900/1098517219014611005/banner_discord.gif);
-}
-
-:is([class*=contents-], [class*=memberInner]):has([src*="1081004946872352958"]) [class*=username] {
-    color: rgb(235, 148, 249) !important;
-}
-
-:is([class*=contents-]):has([src*="1081004946872352958"]) [class*=username] {
-    content: "Mihari" !important;
-}
-
-.emoji[alt="❌"] {
-    content: url("https://raw.githubusercontent.com/MiyagawaMizu/random-files/main/nashi.svg");
-}
-
-.emoji[alt="⭕"] {
-    content: url("https://raw.githubusercontent.com/MiyagawaMizu/random-files/main/ari.svg");
-}
-
-/* Removes every unnecesary things from the user popout */
-[class*=accountProfilePopoutWrapper-]>div>div>[class*=bannerSVGWrapper-],
-[class*=accountProfilePopoutWrapper-]>div>div>[class*=avatarWrapper-],
-[class*=accountProfilePopoutWrapper-]>div>div>[class*=profileBadges-],
-[class*=accountProfilePopoutWrapper-]>div>div>[class*=userPopoutOverlayBackground-]>[class*=divider-],
-[class*=accountProfilePopoutWrapper-]>div>div>[class*=userPopoutOverlayBackground-]>[class*=section-],
-[class*=accountProfilePopoutWrapper-]>div>div>[class*=userPopoutOverlayBackground-]>[class*=scroller-] {
-    display: none;
-}
-
-/* [class*=accountProfilePopoutWrapper-] > div > div > [class*=userPopoutOverlayBackground-] > div:nth-child(1),
-[class*=accountProfilePopoutWrapper-] > div > div > [class*=userPopoutOverlayBackground-] > div:nth-child(2),
-[class*=accountProfilePopoutWrapper-] > div > div > [class*=userPopoutOverlayBackground-] > div:nth-child(3),
-[class*=divider-], [class*=separator-]
-{
-  display: none;
-} */
-
-a[href="https://support.discord.com"],
-/* help button */
-.recentsIcon-F3eO1o,
-/* inbox button */
-.nowPlayingColumn-1eCBCN,
-/* active now sidebar */
-.newChannel-3q3LPr,
-/* the "NEW" text thats next to channels */
-div[aria-label*="Show User Profile"],
-/* user profile button */
-button[aria-label="Send a gift"]
-
-/* send gift button */
-    {
-    display: none;
-}
-
-/* member list thingy */
-@media only screen and (max-width: 1080px) {
-    [class*="membersWrap"] {
-        position: absolute;
-        opacity: 75%;
-        right: -180px;
-        transition: all 300ms cubic-bezier(0.22, 1, 0.36, 1);
-        z-index: 1;
-        box-sizing: border-box;
-        -webkit-box-sizing: border-box;
-    }
-
-    [class*="membersWrap"]>[class*="members-"] {
-        border-radius: 0 0 0 8px;
-    }
-
-    [class*="membersWrap"]:hover>[class*="members-"] {
-        border-radius: 0 0 0 8px;
-    }
-
-    [class*="membersWrap"]:hover {
-        opacity: 100%;
-        right: 0;
-        z-index: 2;
-        box-sizing: border-box;
-        -webkit-box-sizing: border-box;
-        border: 1px solid var(--background-modifier-accent);
-        border-width: 0 0 2px 2px;
-        border-radius: 0 0 0 8px;
-    }
-
-    main form {
-        z-index: 2;
-        width: calc(100% - 9vw);
-    }
-}
-
-/* @s before pomelo usernames */
-:is([class*=userTagWithNickname], [class*=nameTagSmall]) span:only-child:before {
-    content: '@';
-}
-
-
-
-/* VC fix */
-
-/* VC container */
-body:has(.container-1zzFcN) #vc-spotify-player::before {
-    margin-top: -128px;
-}
-
-.container-1zzFcN {
-    margin-bottom: 0px;
-}
-
-body:has(.vc-spotify-play) .container-1zzFcN {
-    background-color: hsla(var(--spotify-vencord-text)/1);
-}
-
-body:has(.vc-spotify-pause) .container-1zzFcN {
-    background-color: hsla(var(--spotify-vencord-color)/1);
-}
-
-/* Connection buttons */
-body:has(.vc-spotify-play) #app-mount>div.appAsidePanelWrapper-ev4hlp>div.notAppAsidePanel-3yzkgB>div.app-3xd6d0>div>div.layers-OrUESM.layers-1YQhyW>div>div>div.base-2jDfDU>div>div.sidebar-1tnWFu>section>div.wrapper-3Hk9OB>div>div.flex-2S1XBF.flex-3BkGQD.horizontal-112GEH.horizontal-1Piu5-.flex-3BkGQD.directionRow-2Iu2A9.justifyStart-2Mwniq.alignCenter-14kD11.noWrap-hBpHBz.connection-3k9QeF>div.flex-2S1XBF.flex-3BkGQD.horizontal-112GEH.horizontal-1Piu5-.flex-3BkGQD.directionRow-2Iu2A9.justifyStart-2Mwniq.alignStretch-Uwowzr.noWrap-hBpHBz>button>div>svg {
-    color: hsla(var(--spotify-vencord-color)/1);
-}
-
-body:has(.vc-spotify-pause) #app-mount>div.appAsidePanelWrapper-ev4hlp>div.notAppAsidePanel-3yzkgB>div.app-3xd6d0>div>div.layers-OrUESM.layers-1YQhyW>div>div>div.base-2jDfDU>div>div.sidebar-1tnWFu>section>div.wrapper-3Hk9OB>div>div.flex-2S1XBF.flex-3BkGQD.horizontal-112GEH.horizontal-1Piu5-.flex-3BkGQD.directionRow-2Iu2A9.justifyStart-2Mwniq.alignCenter-14kD11.noWrap-hBpHBz.connection-3k9QeF>div.flex-2S1XBF.flex-3BkGQD.horizontal-112GEH.horizontal-1Piu5-.flex-3BkGQD.directionRow-2Iu2A9.justifyStart-2Mwniq.alignStretch-Uwowzr.noWrap-hBpHBz>button>div>svg {
-    color: hsla(var(--spotify-vencord-text)/1);
-}
-
-/* Video share, soundboard */
-body:has(.vc-spotify-play) .panels-3wFtMD .lookFilled-1H2Jvj.colorBrand-2M3O3N {
-    background-color: hsla(var(--spotify-vencord-text)/0.25);
-    color: hsla(var(--spotify-vencord-color)/1);
-}
-
-body:has(.vc-spotify-play) .panels-3wFtMD .lookFilled-1H2Jvj.colorBrand-2M3O3N:hover,
-body:has(.vc-spotify-play) .button-12Fmur:hover {
-    background-color: hsla(var(--spotify-vencord-color)/0.25);
-}
-
-body:has(.vc-spotify-pause) .panels-3wFtMD .lookFilled-1H2Jvj.colorBrand-2M3O3N:hover,
-body:has(.vc-spotify-pause) .button-12Fmur:hover {
-    background-color: hsla(var(--spotify-vencord-text)/0.25);
-}
-
-body:has(.vc-spotify-pause) .panels-3wFtMD .lookFilled-1H2Jvj.colorBrand-2M3O3N {
-    background-color: transparent;
-}
-
-body:has(.vc-spotify-play) .panels-3wFtMD .buttonIcon-2Zsrs2 {
-    color: hsla(var(--spotify-vencord-color)/1);
-}
-
-body:has(.vc-spotify-pause) .panels-3wFtMD .buttonIcon-2Zsrs2 {
-    color: hsla(var(--spotify-vencord-text)/1);
-}
-
-/* VC text */
-body:has(.vc-spotify-play) #app-mount>div.appAsidePanelWrapper-ev4hlp>div.notAppAsidePanel-3yzkgB>div.app-3xd6d0>div>div.layers-OrUESM.layers-1YQhyW>div>div>div>div>div>section>div.wrapper-3Hk9OB>div>div.flex-2S1XBF.flex-3BkGQD.horizontal-112GEH.horizontal-1Piu5-.flex-3BkGQD.directionRow-2Iu2A9.justifyStart-2Mwniq.alignCenter-14kD11.noWrap-hBpHBz.connection-3k9QeF>div.inner-llGtyq>div>a>div {
-    color: hsla(var(--spotify-vencord-color)/1);
-    font-weight: 600;
-}
-
-body:has(.vc-spotify-pause) #app-mount>div.appAsidePanelWrapper-ev4hlp>div.notAppAsidePanel-3yzkgB>div.app-3xd6d0>div>div.layers-OrUESM.layers-1YQhyW>div>div>div>div>div>section>div.wrapper-3Hk9OB>div>div.flex-2S1XBF.flex-3BkGQD.horizontal-112GEH.horizontal-1Piu5-.flex-3BkGQD.directionRow-2Iu2A9.justifyStart-2Mwniq.alignCenter-14kD11.noWrap-hBpHBz.connection-3k9QeF>div.inner-llGtyq>div>a>div {
-    color: hsla(var(--spotify-vencord-text)/1);
-    font-weight: 600;
-}
-
-.sidebar-1tnWFu:has(#vc-spotify-player) ul[aria-label="Channels"]>li:last-child {
-    padding-bottom: 50px !important;
-}
-
-div#channels {
-    padding-bottom: 20px;
-}
-
-/* Screenshare fix */
-
-body:has([class*=panels-] [class*=activityPanel-]) #vc-spotify-player::before {
-    margin-top: -176px;
-}
-
-body:has(.vc-spotify-pause) [class*=panels-] [class*=activityPanel-] {
-    background-color: hsla(var(--spotify-vencord-color)/1) !important;
-}
-
-body:has(.vc-spotify-play) [class*=panels-] [class*=activityPanel-] {
-    background-color: hsla(var(--spotify-vencord-text)/1) !important;
-}
-
-body:has(.vc-spotify-play) .title-338goq,
-body:has(.vc-spotify-play) .badge-370Op6,
-body:has(.vc-spotify-play) #app-mount>div.appAsidePanelWrapper-ev4hlp>div.notAppAsidePanel-3yzkgB>div.app-3xd6d0>div>div.layers-OrUESM.layers-1YQhyW>div>div>div.base-2jDfDU>div>div.sidebar-1tnWFu>section>div.panel-2ZFCRb.activityPanel-9icbyU>div>div.actions-zk2vB_>div>button>div>svg {
-    color: hsla(var(--spotify-vencord-color)/1);
-    font-weight: 700;
-}
-
-body:has(.vc-spotify-pause) .title-338goq,
-body:has(.vc-spotify-pause) .badge-370Op6,
-body:has(.vc-spotify-pause) #app-mount>div.appAsidePanelWrapper-ev4hlp>div.notAppAsidePanel-3yzkgB>div.app-3xd6d0>div>div.layers-OrUESM.layers-1YQhyW>div>div>div.base-2jDfDU>div>div.sidebar-1tnWFu>section>div.panel-2ZFCRb.activityPanel-9icbyU>div>div.actions-zk2vB_>div>button>div>svg {
-    color: hsla(var(--spotify-vencord-text)/1);
-    font-weight: 700;
-}
-
-/* end of VC fix */
