@@ -1,5 +1,5 @@
-img/wallhaven-5govy1.jpg
-img/wallhaven-x6qqmv.jpg
-img/wallhaven-vqwxd8.jpg
-img/wallhaven-yxy8qd.jpg
-img/wallhaven-kxpjed.jpg
+https://mrpondere.github.io/random-dc-bg/img/wallhaven-5govy1.jpg
+https://mrpondere.github.io/random-dc-bg/img/wallhaven-x6qqmv.jpg
+https://mrpondere.github.io/random-dc-bg/img/wallhaven-vqwxd8.jpg
+https://mrpondere.github.io/random-dc-bg/img/wallhaven-yxy8qd.jpg
+https://mrpondere.github.io/random-dc-bg/img/wallhaven-kxpjed.jpg
